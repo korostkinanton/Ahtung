@@ -1,5 +1,11 @@
 #include "modAlphaCipher.h"
-
+modAlphaCipher::modAlphaCipher(const string& skey)
+{
+ 	for (unsigned i=0; i<numAlpha.size(); i++) {
+ 		alphaNum[numAlpha[i]]=i;
+ 	}
+ 	newkey = convert(getValidKey(skey));
+}
 string modAlphaCipher::decrypt(const string& cipher_st) 
 {
 	string s = getValidOpenText(cipher_st);
@@ -52,4 +58,17 @@ inline string modAlphaCipher::getValidOpenText(const string & s)
  	if (tmp.empty())
  		throw cipher_error("Empty open text");
  return tmp;
+}
+inline string modAlphaCipher::getValidKey(const string & s)
+{
+ 	if (s.empty())
+ 		throw cipher_error("Empty key");
+ 	string tmp(s);
+ 	for (auto & c:tmp) {
+ 		if (!isalpha(c))
+ 			throw cipher_error(string("Invalid key ")+s);
+ 		if (islower(c))
+ 			c = toupper(c);
+ 		}
+ 	return tmp;
 }

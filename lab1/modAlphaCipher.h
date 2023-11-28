@@ -13,10 +13,12 @@ class modAlphaCipher
 {
 private:
     int newkey;
-    string getValidOpenText(const string & s); 
+    string getValidOpenText(const string & s);
+    string getValidKey(const string & s;) 
 public:
     modAlphaCipher()=delete;
-    modAlphaCipher(const int& key) :newkey(key) {};   
+    modAlphaCipher(const int& key) :newkey(key) {};
+    modAlphaCipher(const string& skey);  
     string encrypt(const string& open_st);   
     string decrypt(const string& cipher_st); 
 };
