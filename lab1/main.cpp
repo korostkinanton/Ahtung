@@ -8,7 +8,7 @@ void check(const string& Text, const string& key)
 		string decryptedText;
 		if (key.empty())
             throw cipher_error("Empty key");
-        if (stoi(key) > 0) {
+        if (stoi(key) > 1) {
             modAlphaCipher cipher(stoi(key));
             cipherText = cipher.encrypt(Text);
             decryptedText = cipher.decrypt(cipherText);
@@ -17,6 +17,8 @@ void check(const string& Text, const string& key)
 			cout<<decryptedText<<endl;
 		}else
 			throw cipher_error(std::string("Invalid key ")+key);
+
+	
  	} catch (const cipher_error & e) {
  		cerr<<"Error: "<<e.what()<<endl;
  }
@@ -24,10 +26,13 @@ void check(const string& Text, const string& key)
 int main()
 {
     check("SHERBET","0");
+    check("SHERBET", "1");
+    check("SHERBET", "-65");
     check("SHERBET","");
-    check("S H E R B E T","28");
+    check("S H E R B E T","8");
     check("SHERBET","28");
-    check("123456789","28");
+    check("123456789","7");
+    check("SHERBET","4");
 }
 
 
