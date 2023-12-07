@@ -14,13 +14,14 @@ class modAlphaCipher
 private:
     int newkey;
     string getValidOpenText(const string & s);
-    string getValidKey(const string & s;) 
+    string getValidKey(const string & newkey);
 public:
     modAlphaCipher()=delete;
     modAlphaCipher(const int& key) :newkey(key) {};
     modAlphaCipher(const string& skey);  
     string encrypt(const string& open_st);   
-    string decrypt(const string& cipher_st); 
+    string decrypt(const string& cipher_st);
+    //static int getValidKey(const std::string & s);
 };
 class cipher_error: public invalid_argument {
 public:
@@ -29,3 +30,4 @@ public:
 	explicit cipher_error (const char* what_arg):
 		invalid_argument(what_arg) {}
 };
+
